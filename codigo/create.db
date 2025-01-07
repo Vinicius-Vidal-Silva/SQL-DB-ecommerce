@@ -1,0 +1,40 @@
+-- Criando banco de dados para e-commerce
+
+-- Tabela Clientes
+CREATE TABLE Clientes (
+    id_cliente INTEGER PRIMARY KEY,
+    nome TEXT NOT NULL,
+    tipo TEXT CHECK (tipo IN ('PF', 'PJ')) NOT NULL,
+    cpf_cnpj TEXT UNIQUE NOT NULL,
+    endereco TEXT NOT NULL,
+    telefone TEXT,
+    email TEXT
+);
+
+-- Tabela Produtos
+CREATE TABLE Produtos (
+    id_produto INTEGER PRIMARY KEY,
+    nome_produto TEXT NOT NULL,
+    descricao TEXT,
+    preco REAL NOT NULL,
+    estoque INTEGER NOT NULL,
+    fornecedor TEXT
+);
+
+-- Tabela Pedidos
+CREATE TABLE Pedidos (
+    id_pedido INTEGER PRIMARY KEY,
+    id_cliente INTEGER NOT NULL,
+    data_pedido TEXT NOT NULL,
+    status_entrega TEXT CHECK (status_entrega IN ('finalizada', 'em andamento', 'em processamento', 'pedido recebido')) DEFAULT 'pedido recebido',
+    FOREIGN KEY (id_cliente) REFERENCES Clientes(id_cliente)
+);
+
+-- Tabela Pagamentos
+CREATE TABLE Pagamentos (
+    id_pagamento INTEGER PRIMARY KEY,
+    id_pedido INTEGER NOT NULL,
+    forma_pagamento TEXT CHECK (forma_pagamento IN ('boleto', 'dinheiro', 'cartao', 'pix')) NOT NULL,
+    valor REAL NOT NULL,
+    FOREIGN KEY (id_pedido) REFERENCES Pedidos(id_pedido)
+);

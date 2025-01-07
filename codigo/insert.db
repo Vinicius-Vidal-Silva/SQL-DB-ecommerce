@@ -1,0 +1,21 @@
+-- Inserção de dados nas tabelas
+-- inserir um por um
+-- Clientes
+INSERT INTO Clientes (nome, tipo, cpf_cnpj, endereco, telefone, email) VALUES
+('João Silva', 'PF', '123.456.789-00', 'Rua A, 123', '11987654321', 'joao@email.com'),
+('Empresa ABC', 'PJ', '12.345.678/0001-99', 'Av. Central, 456', '1134567890', 'abc@empresa.com');
+
+-- Produtos
+INSERT INTO Produtos (nome_produto, descricao, preco, estoque, fornecedor) VALUES
+('Batom', 'Batom vermelho', 15.90, 100, 'Fornecedor A'),
+('Base', 'Base líquida', 39.90, 50, 'Fornecedor B');
+
+-- Pedidos
+INSERT INTO Pedidos (id_cliente, data_pedido, status_entrega) VALUES
+(1, '2025-01-01', 'finalizada'),
+(2, '2025-01-02', 'em processamento');
+
+-- Pagamentos
+INSERT INTO Pagamentos (id_pedido, forma_pagamento, valor) VALUES
+(1, 'pix', 55.80),
+(2, 'boleto', 39.90);
